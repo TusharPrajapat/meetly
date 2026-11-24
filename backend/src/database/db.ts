@@ -11,7 +11,7 @@ export const sequelize = new Sequelize(
         host: process.env.DB_HOST!,
         port: Number(process.env.DB_PORT) || 5432,
         dialect: "postgres",
-        logging: false,
+        logging: true,
     }
 );
 
@@ -21,6 +21,6 @@ export const connectDB = async (): Promise<void> => {
         console.log(`Database connected successfully: ${process.env.DB_DATABASE_NAME}`);
     } catch (err: unknown) {
         console.error("Database connection error:", err);
+        throw err;
     }
 };
-
